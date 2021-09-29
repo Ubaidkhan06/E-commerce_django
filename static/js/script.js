@@ -4,7 +4,6 @@
 $(document).ready(function() {
 	// jQuery code
 
-
     /* ///////////////////////////////////////
 
     THESE FOLLOWING SCRIPTS ONLY FOR BASIC USAGE, 
@@ -52,9 +51,5 @@ $(document).ready(function() {
 	} // end if
 
 
-
-
-    
 }); 
 // jquery end
-
