@@ -6,13 +6,13 @@
     <div class="container">
 
         <!-- ============================ COMPONENT 1 ================================= -->
-        
+
         {% if not cart_items %}
-            <h2 class="text-center">Your Shopping Cart is Empty.</h2>
-            <div class="text-center">
-                <a hx-boost="true" href="{% url 'store' %}" class="btn btn-success mt-4">Continue Shopping</a>
-            </div>
-        {% else %}            
+        <h2 class="text-center">Your Shopping Cart is Empty.</h2>
+        <div class="text-center">
+            <a hx-boost="true" href="{% url 'store' %}" class="btn btn-success mt-4">Continue Shopping</a>
+        </div>
+        {% else %}
         <div class="row">
             <aside class="col-lg-9">
                 <div class="card shadow">
@@ -34,17 +34,19 @@
                                         <div class="aside"><img src="{{ cart_item.product.images.url }}" class="img-sm">
                                         </div>
                                         <figcaption class="info">
-                                            <a hx-boost="true" href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name|title }}</a>
+                                            <a hx-boost="true" href="{{ cart_item.product.get_url }}"
+                                                class="title text-dark">{{ cart_item.product.product_name|title }}</a>
                                             <p class="text-muted small">
-                                                
+
                                                 {% if cart_item.variations.all %}
-                                                    
-                                                    {% for item in cart_item.variations.all %}
-                                                        {{ item.variation_category |title }} : {{ item.variation_value|title }} <br>
-                                                    {% endfor %}
-                                                        
+
+                                                {% for item in cart_item.variations.all %}
+                                                {{ item.variation_category |title }} : {{ item.variation_value|title }}
+                                                <br>
+                                                {% endfor %}
+
                                                 {% endif %}
-                                                    
+
                                             </p>
                                         </figcaption>
                                     </figure>
@@ -54,18 +56,23 @@
                                     <div class="col">
                                         <div class="input-group input-spinner">
                                             <div class="input-group-prepend">
-                                                <a hx-boost="true" href="{% url 'remove_from_cart' cart_item.product.id cart_item.id %}"  class="btn btn-light" type="button" id="button-plus"> <i
+                                                <a hx-boost="true"
+                                                    href="{% url 'remove_from_cart' cart_item.product.id cart_item.id %}"
+                                                    class="btn btn-light" type="button" id="button-plus"> <i
                                                         class="fa fa-minus"></i> </a>
                                             </div>
                                             <input type="text" class="form-control" value="{{ cart_item.quantity }}">
                                             <div class="input-group-append">
 
-                                                <form hx-boost="true" action="{% url 'add_to_cart' cart_item.product.id %}" method="POST">
+                                                <form hx-boost="true"
+                                                    action="{% url 'add_to_cart' cart_item.product.id %}" method="POST">
                                                     {% csrf_token %}
                                                     {% for item in cart_item.variations.all %}
-                                                        <input type="hidden" name="{{ item.variation_category | lower }}" value="{{ item.variation_value | capfirst }}">
+                                                    <input type="hidden" name="{{ item.variation_category | lower }}"
+                                                        value="{{ item.variation_value | capfirst }}">
                                                     {% endfor %}
-                                                    <button class="btn btn-light" type="submit" id="button-minus"><i class="fa fa-plus"></i></button>
+                                                    <button class="btn btn-light" type="submit" id="button-minus"><i
+                                                            class="fa fa-plus"></i></button>
                                                 </form>
                                             </div>
                                         </div> <!-- input-group.// -->
@@ -78,7 +85,9 @@
                                     </div> <!-- price-wrap .// -->
                                 </td>
                                 <td class="text-right">
-                                    <a hx-boost="true" href="{% url 'remove_item_from_cart' cart_item.product.id cart_item.id %}" onclick="return confirm('Are you sure you want to remove this item?')" class="btn btn-danger"> Remove</a>
+                                    <a hx-boost="true" hx-confirm = "Are you sure ?" 
+                                    href="{% url 'remove_item_from_cart' cart_item.product.id cart_item.id %}"
+                                    class="btn btn-danger"> Remove</a>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -107,8 +116,9 @@
                         <p class="text-center mb-3">
                             <img src="{% static './images/misc/payments.png' %}" height="26">
                         </p>
-                        <a hx-boost="true" href="./place-order.html" class="btn btn-primary btn-block"> Checkout </a>
-                        <a hx-boost="true" href="{% url 'store' %}" class="btn btn-secondary btn-block">Continue Shopping</a>
+                        <a hx-boost="true" href="{% url 'checkout' %}" class="btn btn-primary btn-block"> Checkout </a>
+                        <a hx-boost="true" href="{% url 'store' %}" class="btn btn-secondary btn-block">Continue
+                            Shopping</a>
                     </div> <!-- card-body.// -->
                 </div> <!-- card.// -->
 
@@ -119,9 +129,8 @@
         {% endif %}
 
         <!-- ============================ COMPONENT 1 END .// ================================= -->
-    
+
     </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 {% endblock content %}
-

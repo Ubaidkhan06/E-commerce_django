@@ -1,4 +1,4 @@
-// some scripts
+// some script
 
 // jquery ready start
 $(document).ready(function() {

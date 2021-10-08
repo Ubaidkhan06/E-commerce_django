@@ -17,9 +17,9 @@
                         <a href="#" class="nav-link"> USD </a>
                     </li>
                 </ul>
-                <ul class="navbar-nav">
-                    <li><a hx-boost="true" href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
-                    <li><a hx-boost="true" href="#" class="nav-link"> <i class="fa fa-phone"></i> Call us </a></li>
+                <ul class="navbar-nav" hx-boost="true">
+                    <li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
+                    <li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Call us </a></li>
                 </ul> <!-- list-inline //  -->
             </div> <!-- navbar-collapse .// -->
         </div> <!-- container //  -->
@@ -64,18 +64,18 @@
                         
                         {% if user.is_authenticated %}                         
                         <div class="widget-header">
-                            <small class="title text-muted">Welcome <strong>{{ user.first_name }}</strong></small>
-                            <div>
-                                <a hx-boost="true" href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
-                                <a hx-boost="true" onclick="return confirm('Are you sure you want to Logout ?')" href="{% url 'logout' %}">Logout</a>
+                            <small class="title text-muted">Welcome <strong>{{ user.first_name|title  }}</strong></small>
+                            <div hx-boost="true">
+                                <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
+                                <a hx-confirm = "Are you sure ?"  href="{% url 'logout' %}">Logout</a>
                             </div>
                         </div> 
                         {% else %}
                         <div class="widget-header">
                             <small class="title text-muted">Welcome Guest !!</small>
-                            <div>
-                                <a hx-boost="true" href="{% url 'login' %}">Log In</a> <span class="dark-transp"> | </span>
-                                <a hx-boost="true" href="{% url 'register' %}">Register</a>
+                            <div hx-boost="true">
+                                <a href="{% url 'login' %}">Log In</a> <span class="dark-transp"> | </span>
+                                <a href="{% url 'register' %}">Register</a>
                             </div>
                         </div> 
                         {% endif %}

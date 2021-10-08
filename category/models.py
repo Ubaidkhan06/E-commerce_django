@@ -5,9 +5,9 @@ from django.urls import reverse
 
 
 class Category(models.Model):
-    category_name = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=50, unique=True)
-    description = models.CharField(max_length=270, blank=True)
+    category_name  = models.CharField(max_length=200, unique=True)
+    slug           = models.SlugField(max_length=50, unique=True)
+    description    = models.CharField(max_length=270, blank=True)
     category_image = models.ImageField(upload_to='photos/category', blank=True)
 
     class Meta:
